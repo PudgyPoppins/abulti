@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/png" />
+
+	<meta charset="UTF-8">
+	<meta name="description" content="Abulti Apparel is a clothing company.">
+	<meta name="keywords" content="abulti, apparel, abulti apparel, clothing, streetwear">
+	<meta name="author" content="Abulti Apparel Developers">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:description" content="Abulti Apparel is a clothing company.">
+
+	<title>{% block title %}Abulti Apparel{% endblock %}</title>
+
+	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
+
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+	{% include "navbar.html" %}
+	
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
+	    	<button class="delete is-medium" onclick="removeNotification(this)"></button>{{ message }}
+		</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+
+	{% block content %}
+	{% endblock %}
+
+	<footer>
+	  
+	</footer>
+
+	<script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
