@@ -8,10 +8,10 @@
 
 html, body{
 	width:100%;
-	height:100%;
 	padding:0;
 	margin:0;
 	background:#fafafa;
+	height:auto;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, input, label, button, span, i, b, strong, thead, tbody, strong, em{
@@ -24,6 +24,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 nav{
+	position: -webkit-sticky;
 	position:sticky;
 	top:0;
 	display:flex;
@@ -35,16 +36,17 @@ nav{
 .navWrapper{
 	width:100%;
 	display:flex;
+	flex-flow:row wrap;
 	border-bottom:1px solid #dbdbdb;
 	background:#fff; /*f7f7f7*/
 }
 .navThird{
 	flex:0.33333333333333;
 	max-width:33.333333333333%;
-	min-width:33.333333333333%;
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	box-sizing:content-box;
 }
 .navThird:first-of-type{
 	justify-content: flex-start;
@@ -59,7 +61,6 @@ nav{
 	justify-content: flex-end;
 	padding-right:15px;
 }
-nav h1{margin:0; font-size:1.6em;}
 nav a{text-decoration: none;}
 
 .navThird:last-of-type a{
@@ -67,7 +68,7 @@ nav a{text-decoration: none;}
 	border-bottom:2px solid transparent;
 	font-size:17px;
 }
-.navThird:last-of-type a:hover, .navThird:last-of-type a:focus{
+.navThird:last-of-type a:hover, .navThird:last-of-type a:focus, .navThird:last-of-type a.active{
 	border-bottom-color:#111;
 	background:#f7f7f7; /*f2f2f2*/
 }
@@ -87,6 +88,29 @@ nav a{text-decoration: none;}
 }
 .secondaryNavWrapper a:hover{
 	text-decoration:underline;
+}
+
+.miniShop{
+	position:fixed;
+	display:none;
+	z-index: 1;
+	background:#fafafa;
+	padding:0 50px;
+	border-bottom:1px solid #dbdbdb;
+	width:100%;
+}
+.miniShop:hover{
+	display:block;
+}
+.miniShop .close{
+	font-size: 1.5em;
+	float: right;
+	margin-top: 10px;
+	color: #555;
+	cursor: pointer;
+}
+.miniShop .shopCard{
+	max-width:200pt;
 }
 
 .carousel{transition:0s;}
@@ -119,8 +143,11 @@ nav a{text-decoration: none;}
 	width:100%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-size: 100%;
-	height:400pt; /*Delete this line to make the image actual size again*/
+	background-position:center center;
+	-webkit-background-size: contain !important;
+	background-size: contain;
+	background-color: #f2ecd6;
+	max-height:400pt; 
 }
 .bigImage img{visibility: hidden;}
 
@@ -142,7 +169,7 @@ nav a{text-decoration: none;}
 .shopCard{
 	flex:0.333333333333333;
 	max-width:33.3333333333333%;
-	min-width:33.3333333333333%;
+	width:33.3333333333333%;
 	padding:15px;
 
 }
@@ -216,9 +243,10 @@ footer .legal{
 	text-align: center;
 	margin-top:10px;
 }
-footer .legal p{margin:0;}
-footer .legal:last-of-type{margin-bottom:20px;}
+footer .legal p{margin:0; font-family:monospace;}
+footer .legal:last-of-type{padding-bottom:20px;}
 
+footer .legal a{font-family: 'Roboto Mono', monospace;}
 footer .legal a:hover{
 	color:#383838;
 }
