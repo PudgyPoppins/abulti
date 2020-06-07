@@ -28,7 +28,7 @@
 	<ul class="messages">
 	    {% for message in messages %}
 	    <li{% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
-	    	<button class="delete is-medium" onclick="removeNotification(this)"></button>{{ message }}
+	    	<button class="delete" onclick="removeNotification(this)"></button>{{ message }}
 		</li>
 	    {% endfor %}
 	</ul>

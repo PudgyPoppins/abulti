@@ -1,8 +1,9 @@
 /*style.css*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 *{
 	box-sizing: border-box;
 	transition:0.2s ease-in all;
-	font-family:;
 }
 
 html, body{
@@ -10,6 +11,7 @@ html, body{
 	height:100%;
 	padding:0;
 	margin:0;
+	background:#fafafa;
 }
 
 h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, input, label, button, span, i, b, strong, thead, tbody, strong, em{
@@ -18,10 +20,205 @@ h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, input, label, button, span, i, b, stro
 }
 h1, h2, h3, h4, h5, h6{
   font-weight:400;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 nav{
-	border:1px solid red;
+	position:sticky;
+	top:0;
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	background:#fafafa;
+	z-index: 1;
+}
+.navWrapper{
+	width:100%;
+	display:flex;
+	border-bottom:1px solid #dbdbdb;
+	background:#fff; /*f7f7f7*/
+}
+.navThird{
+	flex:0.33333333333333;
+	max-width:33.333333333333%;
+	min-width:33.333333333333%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.navThird:first-of-type{
+	justify-content: flex-start;
+	padding-left:15px;
+}
+.navThird:first-of-type img{
+	width:50px;
+	padding-right: 13px;
+	border-right: 1px solid #dbdbdb;
+}
+.navThird:last-of-type{
+	justify-content: flex-end;
+	padding-right:15px;
+}
+nav h1{margin:0; font-size:1.6em;}
+nav a{text-decoration: none;}
+
+.navThird:last-of-type a{
+	padding:calc(15px + 2px) 10px 15px 10px;
+	border-bottom:2px solid transparent;
+	font-size:17px;
+}
+.navThird:last-of-type a:hover, .navThird:last-of-type a:focus{
+	border-bottom-color:#111;
+	background:#f7f7f7; /*f2f2f2*/
+}
+
+.secondaryNavWrapper{
+	border-bottom:1px solid #dbdbdb;
 	padding:5px;
+	display:flex;
+	justify-content: center;
+	background: #f7f7f7; /*fff*/
+	flex-wrap: wrap;
+}
+.secondaryNavWrapper a{
+	margin:0 5px;
+	color:#3e3e3e;
+	font-size:14px;
+}
+.secondaryNavWrapper a:hover{
+	text-decoration:underline;
+}
+
+.carousel{transition:0s;}
+.carousel div {
+  display: block;
+  height: 250px;
+  transition:0s;
+}
+.carousel div img{height:100%;}
+
+
+.hero{
+	background:#f5efdc;
+	padding:50px;
+}
+.hero h1{
+	margin:0; 
+	color: #1e1e1e;
+	font-size:2.2em;
+}
+.hero h3{
+	margin-bottom:0; 
+	margin-top:10px; 
+	color:#393939;
+	font-family: 'Roboto Mono', monospace;
+	max-width:75%;
+}
+
+.bigImage{
+	width:100%;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height:400pt; /*Delete this line to make the image actual size again*/
+}
+.bigImage img{visibility: hidden;}
+
+.wrapper{
+	padding:50px 50px 0 50px;
+}
+.wrapper h1{
+	margin:0;
+}
+
+.cardWrapper{
+	display:flex;
+	flex-flow:row wrap;
+}
+.cardWrapper.home{
+	margin-top:1em;
+}
+
+.shopCard{
+	flex:0.333333333333333;
+	max-width:33.3333333333333%;
+	min-width:33.3333333333333%;
+	padding:15px;
+
+}
+.shopCard img{
+	width:100%;
+}
+.shopCard img:hover{
+	filter:brightness(105%);
+}
+.cardCaption{padding:0 5px; margin-top:5px;}
+.cardCaption p{
+	font-family: 'Roboto Mono', monospace;
+	line-height: 1;
+	margin:0;
+}
+.cardCaption .captionInfo{
+	display:flex;
+	margin-bottom:5px;
+}
+.cardCaption .price{margin-left:auto;}
+.cardCaption .description{color:#575757;}
+
+.seeAll{
+	color:#25d;
+	text-decoration:none;
+	font-family: 'Roboto Mono', monospace;
+}
+.seeAll:hover{
+	color:#27f;
+}
+.seeAll::after{
+	content: "➔";
+	margin-left:5px;
+	transition:0.2s;
+}
+.seeAll:hover::after{
+	margin-left:10px;
+	transition:0.2s;
+}
+
+
+footer{
+	background:#f4f4f4;
+	padding:0 10px;
+}
+footer .columns{
+	display:flex;
+	justify-content: center;
+	flex-flow: row wrap;
+}
+footer .columns div{
+	margin:0 15px;
+}
+
+footer .columns h4{
+	margin:20px 0 5px 0;
+	font-weight:bold;
+}
+footer .columns a{
+	display:block;
+	font-family: 'Roboto Mono', monospace;
+	text-decoration: none;
+	line-height:1.5;
+}
+footer .columns a:hover{
+	text-decoration:underline;
+	color: #383838
+}
+footer .legal{
+	font-size:14px;
+	text-align: center;
+	margin-top:10px;
+}
+footer .legal p{margin:0;}
+footer .legal:last-of-type{margin-bottom:20px;}
+
+footer .legal a:hover{
+	color:#383838;
 }

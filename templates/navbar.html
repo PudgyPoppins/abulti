@@ -1,7 +1,24 @@
-<nav class="navbar flex">
-    <h1><a href="{% url 'home:index' %}">Abulti Apparel</a></h1>
-    <ul>
-        <li><a href="#">New Releases</a></li>
-        <li><a href="#">Shop All</a></li>
-    </ul>
+{% load static %}
+<nav>
+	<div class="navWrapper">
+		<div class="navThird">
+			<a href="{% url 'home:index' %}"><img src="{% static 'images/favicon.ico' %}"/></a>
+		</div>
+	    <div class="navThird">
+	    	<h1><a href="{% url 'home:index' %}">Abulti Apparel Big Logo</a></h1>
+	    </div>
+	    <div class="navThird">
+			<a href="#">new releases</a>
+			<a href="#">shop all</a>
+			<a href="#" title="0 items in cart"><i class="fas fa-shopping-cart"></i></a>
+		</div>
+	</div>
+	
+	<div class="secondaryNavWrapper">
+		<a href="#">about</a>
+		<a href="#">blog</a>
+		<a href="#">help</a>
+		<a href="#">shipping</a>
+		<a href="#">return policy</a>
+	</div>
 </nav>
