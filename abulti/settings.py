@@ -142,5 +142,7 @@ EMAIL_HOST_USER = 'abultiapparel@gmail.com'
 with open('EMAIL_PASS.text') as f:
     EMAIL_HOST_PASSWORD = f.read().strip()
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+
+#Change these to True later
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
