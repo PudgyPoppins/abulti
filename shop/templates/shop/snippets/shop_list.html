@@ -1,0 +1,15 @@
+{% for i in list %}
+<div class="shopCard">
+	<a href="#"><img src="media/{{ i.image.first.img }}" alt="{{ i.image.first.alt_text }}"/></a>
+
+	<div class="cardCaption">
+		<div class="captionInfo">
+			<p class="name">{{ i.name }}<p>
+			<p class="price">${{ i.price }}</p>
+		</div>
+		<p class="description">
+			{% if i.fit %}{{ i.get_fit_display }}{% endif %} {{ i.get_clothing_type_display }}
+		</p>
+	</div>
+</div>
+{% endfor %}

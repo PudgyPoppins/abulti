@@ -5,16 +5,10 @@
 	<i class="fas fa-times close" onclick="closeMiniShop()"></i>
 	<h2>Quick Look</h2>
 	<div class="cardWrapper">
-		<div class="shopCard">
-			<a href="#"><img src="https://c.shld.net/rpx/i/s/i/spin/image/spin_prod_967011012??hei=64&wid=64&qlt=50" alt="tshirt"/></a>
-			<div class="cardCaption">
-				<div class="captionInfo">
-					<p class="name">Simple T<p>
-					<p class="price">$59</p>
-				</div>
-				<p class="description">Unisex T-Shirt</p>
-			</div>
-		</div>
+		{% if recent_list %}
+			{% include "shop/snippets/shop_list.html" with list=recent_list %}
+		{% else %}<h1>No items in stock</h1>
+		{% endif %}
 	</div>
 
 	<h3><a href="#" class="seeAll">See all</a></h3>
@@ -45,27 +39,10 @@
 	<h1>Popular Items</h1>
 
 	<div class="cardWrapper home">
-		<div class="shopCard">
-			<a href="#"><img src="images/Diamonds Tee.png" alt="tshirt"/></a>
-			<div class="cardCaption">
-				<div class="captionInfo">
-					<p class="name">Diamonds Tee<p>
-					<p class="price">$59</p>
-				</div>
-				<p class="description">Unisex T-Shirt</p>
-			</div>
-		</div>
-
-		<div class="shopCard">
-			<a href="#"><img src="images/MT Blanc Tee.png" alt="tshirt"/></a>
-			<div class="cardCaption">
-				<div class="captionInfo">
-					<p class="name">Grandes Jorasses Tee<p>
-					<p class="price">$24</p>
-				</div>
-				<p class="description">Unisex T-Shirt</p>
-			</div>
-		</div>
+		{% if recent_list %}
+			{% include "shop/snippets/shop_list.html" with list=popular_list %}
+		{% else %}<h1>No items in stock</h1>
+		{% endif %}
 	</div>
 
 	<h3><a href="#" class="seeAll">See all</a></h3>
