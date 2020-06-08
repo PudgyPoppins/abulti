@@ -10,7 +10,7 @@ html, body{
 	width:100%;
 	padding:0;
 	margin:0;
-	background:#fafafa;
+	background:#fe6464;
 	height:auto;
 }
 
@@ -74,11 +74,11 @@ nav a{text-decoration: none;}
 }
 
 .secondaryNavWrapper{
-	border-bottom:1px solid #dbdbdb;
+	border-bottom:1px solid #bb5191;
 	padding:5px;
 	display:flex;
 	justify-content: center;
-	background: #f7f7f7; /*fff*/
+	background: #fe6464; /*fff*/
 	flex-wrap: wrap;
 }
 .secondaryNavWrapper a{
@@ -94,7 +94,7 @@ nav a{text-decoration: none;}
 	position:fixed;
 	display:none;
 	z-index: 1;
-	background:#fafafa;
+	background:#f6508c;
 	padding:0 50px;
 	border-bottom:1px solid #dbdbdb;
 	width:100%;
@@ -212,7 +212,7 @@ nav a{text-decoration: none;}
 
 
 footer{
-	background:#f4f4f4;
+	background:#56508c;
 	padding:0 10px;
 }
 footer .columns{
