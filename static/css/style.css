@@ -37,8 +37,8 @@ nav{
 	width:100%;
 	display:flex;
 	flex-flow:row wrap;
-	border-bottom:1px solid #dbdbdb;
-	background:#fff; /*f7f7f7*/
+	border-bottom:1px solid #56508c;
+	background:#bb5191; /*f7f7f7*/
 }
 .navThird{
 	flex:0.33333333333333;
@@ -96,7 +96,7 @@ nav a{text-decoration: none;}
 	z-index: 1;
 	background:#f6508c;
 	padding:0 50px;
-	border-bottom:1px solid #dbdbdb;
+	border-bottom:1px solid #56508c;
 	width:100%;
 }
 .miniShop:hover{
@@ -146,7 +146,7 @@ nav a{text-decoration: none;}
 	background-position:center center;
 	-webkit-background-size: contain !important;
 	background-size: contain;
-	background-color: #f2ecd6;
+	background-color: #bb5191;
 	max-height:400pt; 
 }
 .bigImage img{visibility: hidden;}
@@ -193,12 +193,12 @@ nav a{text-decoration: none;}
 .cardCaption .description{color:#575757;}
 
 .seeAll{
-	color:#25d;
+	color:#56508c;
 	text-decoration:none;
 	font-family: 'Roboto Mono', monospace;
 }
 .seeAll:hover{
-	color:#27f;
+	color:#bb5191;
 }
 .seeAll::after{
 	content: "➔";
