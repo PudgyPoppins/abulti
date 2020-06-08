@@ -2,10 +2,10 @@
 <nav>
 	<div class="navWrapper">
 		<div class="navThird">
-			<a href="{% url 'home:index' %}"><img src="{% static 'images/abulti2.png' %}"/></a>
+			<a href="{% url 'home:index' %}"><img src="{% static 'images/favicon.ico' %}"/></a>
 		</div>
 	    <div class="navThird">
-	    	<a href="{% url 'home:index' %}"><img height="30px" src="https://www.logolynx.com/images/logolynx/4e/4e5da315d576c36ff3cb5be239bbf538.jpeg"/></a>
+	    	<a href="{% url 'home:index' %}"><img height="30px" src="{% static 'images/abulti2.png' %}"/></a>
 	    </div>
 	    <div class="navThird">
 			<a href="#" id="new" {% if request.path == "/" %}onmouseover="miniShop()" onfocus="miniShop()" onfocusout="closeMiniShop()" aria-haspopup="true"{% endif %}>new releases</a>

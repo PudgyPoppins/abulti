@@ -15,6 +15,8 @@ This is the code for the *massively* popular Abulti Apparel website
 	* Sizing information (optional?)
 	* Tags (optional)
 		* Just Arrived, Best Seller, etc
+			* Scratch that, just arrived and best seller are going to be added automatically to the card, if they meet the stipulations
+			* I don't know what I'll use tags for, but i'll keep them there for right now
 		* Show tag information, if given, about the caption in the card with a unique color
 			* Also show "Out of Stock" in same area
 	* Type

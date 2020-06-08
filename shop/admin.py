@@ -52,3 +52,4 @@ class ItemAdmin(admin.ModelAdmin):
 admin.site.register(Item)
 admin.site.register(Tag)
 admin.site.register(Size)
+admin.site.register(Image)
