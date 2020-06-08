@@ -6,24 +6,7 @@ This is the code for the *massively* popular Abulti Apparel website
 
 * After the actual store item model is in, I'll add a "quickshop" button to both the homepage and store pages, with a modal so that users can buy stuff quicker.
 
-* Store Item Object
-	* Price
-	* Title
-	* In stock/Out stock (boolean)
-	* Photos - Probably a many to many, but idk
-	* Description 
-	* Sizing information (optional?)
-	* Tags (optional)
-		* Just Arrived, Best Seller, etc
-			* Scratch that, just arrived and best seller are going to be added automatically to the card, if they meet the stipulations
-			* I don't know what I'll use tags for, but i'll keep them there for right now
-		* Show tag information, if given, about the caption in the card with a unique color
-			* Also show "Out of Stock" in same area
-	* Type
-		* T Shirt, Hat, Long Sleeve, etc
-	* Gender (optional)
-		* Male, Female, Unisex
-		* If given, just display as a string before the type in the card caption
+* Add certain automatic tags (that don't use the tag model), where if an item's date is within a week of today, then add "Just arrived". If an item is the most popular for its clothing_type (most purchases), then add "best selling"
 
 * Filling in content, like about page, mission statement, metadata descriptions, etc
 * Privacy policy (can be created by me, more of a "here's the data we collect" than a legal document)
