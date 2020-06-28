@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="bigImage" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/1280px-The_Great_Wave_off_Kanagawa.jpg')">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/1280px-The_Great_Wave_off_Kanagawa.jpg" alt="placeholder" width="100%">
+</div>
+
+<div class="shopWrapper listView">
+	<aside>
+		<div class="filter">
+			<h1>Filters</h1>
+			<input type="text" class="search" placeholder="search" />
+			<div id="checkboxes">
+		  		{% for i in category_names %}
+	  			<input type="checkbox" id="{{ i }}" name="{{ i }}" value=".{{ i }}">
+	  			<label for="{{ i }}">{{ i }}</label><br>
+		  		{% endfor %}
+		  	</div>
+
+	  	</div>
+
+	  	<div class="filter">
+			<h1>Price</h1>
+
+			<label for="min">Minimum Price:</label><br>
+			<div class="flex">
+				<input type="range" id="min" name="min" min="0" max="100" value="0">
+				<span>$<span id="minprice">0</span></span>
+			</div>
+
+			<label for="max">Maximum Price:</label><br>
+			<div class="flex">
+				<input type="range" id="max" name="max" min="0" max="100" value="100">
+				<span>$<span id="maxprice">100</span></span>
+			</div>
+		</div>
+
+		<div class="filter">
+			<h1>Sort</h1>
+
+			<select name="sort" id="sort">
+				<option value="popular">most popular</option>
+				<option value="date" id="dec" {% if "new" in request.path %}selected {% endif %}>most recent</option>
+				<option value="price" id="dec">price high to low</option>
+				<option value="price">price low to high</option>
+				<option value="name">alphabetical</option>
+				<option value="random">random</option>
+			</select>
+		</div>
+	</aside>
+	<main>
+		<h1 style="margin-top:0">Shop</h1>
+		<div class="cardWrapper">
+			{% if list %}
+				{% include "shop/snippets/shop_list.html" with list=list %}
+			{% elif category %}<h1>No {{ category }}s in stock</h1>
+			{% endif %}
+		</div>
+	</main>
+</div>
+
+<script>
+	var x = document.querySelectorAll('input[type=checkbox]');
+	{% if category %} //uncheck all checkboxes
+	for (var i = 0; i < x.length; i++) {
+		x[i].checked = false;
+	}
+
+	document.getElementById("{{ category }}").checked = true; //recheck just that category
+	{% else %} //check all checkboxes
+	for (var i = 0; i < x.length; i++) {
+		x[i].checked = true;
+	}
+	{% endif %}
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/list.js' %}"></script>
+
+{% endblock %}

@@ -22,6 +22,8 @@
 	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
 
+	{% if 'shop' in request.path %}<link type="text/css" href="{% static 'css/detailAndShop.css' %}" rel="stylesheet">{% endif %}
+
 	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -42,7 +44,32 @@
 	{% endblock %}
 
 	<footer>
-	  
+		<div class="columns">
+			<div>
+				<h4>Shop</h4>
+				<a href="{% url 'shop:shop_new' %}">new releases</a>
+				<a href="{% url 'shop:shop_all' %}">shop all</a>
+			</div>
+			<div>
+				<h4>Social</h4>
+				<a href="#">instagram</a>
+				<a href="#">twitter</a>
+				<a href="#">facebook</a>
+			</div>
+			<div>
+				<h4>Help</h4>
+				<a href="#">shipping info</a>
+				<a href="#">returns</a>
+				<a href="#">contact us</a>
+			</div>
+		</div>
+
+		<div class="legal">
+			<p>By using this site, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+		</div>
+		<div class="legal">
+			<p>Copyright &copy; 2020 by Abulti Apparel. All rights reserved.</p>
+		</div>
 	</footer>
 
 	<script src="{% static 'js/index.js' %}"></script>

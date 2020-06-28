@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}{{ item.name }} {% if item.fit %}{{ item.get_fit_display }}{% endif %} {% endblock %}
+
+{% block content %}
+
+<div class="shopWrapper">
+<main>
+	<div class="imageWrapper">
+		<img src="/media/{{ item.image.first.img }}" alt="{{ item.image.first.alt_text }}" class="itemImage"/>
+		<div class="smallImageWrapper">
+			{% for image in item.image.all %}
+				{% if not forloop.first %}<img src="/media/{{ image.img }}" alt="{{ image.alt_text }}"/>{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
+	<div class="tagWrapper">
+		{% if item.in_stock %}
+		<div class="tag success">In Stock</div>
+		{% else %}
+		<div class="tag error">Out of Stock</div>
+		{% endif %}
+
+		{% if item.pub_date|is_new_arrival %}
+		<div class="tag info">New Arrival</div>
+		{% endif %}
+
+		{% for tag in item.tag.all %}
+		<div class="tag info">{{ tag }}</div>
+		{% endfor %}
+	</div>
+
+	<div class="nameWrapper">
+		<h1>{{ item.name }}</h1>
+		<h2>${{ item.price }}</h2>
+	</div>
+
+	<button class="buy" style="margin-top:1em">Buy Item</button>
+
+	<p>{% if item.fit %}{{ item.get_fit_display }}{% endif %} <a href="{% url 'shop:by_category' item.get_category_display %}">{{ item.get_category_display }}</a></p>
+
+	<p>{{ item.description }}</p>
+
+	<h2><a href="{% url 'shop:shop_all' %}" class="seeAll">Shop Other</a></h2>
+	<div class="cardWrapper">
+		{% include "shop/snippets/shop_list.html" with list=shop_other_list %}
+	</div>
+</main>
+
+<aside>
+	<h1>{{ item.name }}</h1>
+
+	<button class="buy">Buy Item</button>
+
+	<p class="price">${{ item.price }}</p>
+	<p>{% if item.fit %}{{ item.get_fit_display }}{% endif %} {{ item.get_category_display }}</p>
+	<p><a href="{% url 'shop:by_category' item.get_category_display %}" class="seeAll">Shop all {{ item.get_category_display }}s</a></p>
+
+	{% if item.size.all %}
+	<h1>Sizing</h1>
+	<p>Sizes offered in:</p>
+	<ul>
+		{% for s in item.size.all %}<li>{{ s.name }}</li>{% endfor %}
+	</ul>
+	{% endif %}
+</aside>
+</div>
+{% endblock %}

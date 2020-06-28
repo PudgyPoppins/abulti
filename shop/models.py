@@ -35,10 +35,10 @@ class Item(models.Model):
 
 	TYPES = (
 		('TS', 'T-Shirt'),
-		('LS', 'Long Sleeve'),
+		('LS', 'Long-Sleeve'),
 		('ST', 'Sticker'),
 	)
-	clothing_type = models.CharField(max_length=2, choices=TYPES)
+	category = models.CharField(max_length=2, choices=TYPES)
 
 	FITS = (
 		('F', "Women's"),
@@ -47,7 +47,7 @@ class Item(models.Model):
 	)
 	fit = models.CharField(max_length=1, choices=FITS, null=True, blank=True) #optional
 
-	slug = models.SlugField(max_length=65, blank=True, null=True)
+	slug = models.SlugField(max_length=65, blank=True, null=True, unique=True)
 
 	def __str__(self): 
 		return self.name

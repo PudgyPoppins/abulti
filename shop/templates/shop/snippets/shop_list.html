@@ -1,14 +1,33 @@
+{% load custom_filters %}
+
 {% for i in list %}
-<div class="shopCard">
-	<a href="#"><img src="media/{{ i.image.first.img }}" alt="{{ i.image.first.alt_text }}"/></a>
+<div class="shopCard {{ i.get_category_display }}">
+	<a href="{% url 'shop:detail' i.get_category_display i.slug %}"><img src="/media/{{ i.image.first.img }}" alt="{{ i.image.first.alt_text }}"/></a>
 
 	<div class="cardCaption">
+		<div class="tagWrapper">
+			{% if not i.in_stock %}
+			<div class="tag error">Out of Stock</div>
+			{% endif %}
+
+			{% if i.pub_date|is_new_arrival %}
+			<div class="tag info">New Arrival</div>
+			{% endif %}
+
+			{% for tag in i.tag.all %}
+			<div class="tag info">{{ tag }}</div>
+			{% endfor %}
+		</div>
+
 		<div class="captionInfo">
-			<p class="name">{{ i.name }}<p>
+			<p class="name"><a href="{% url 'shop:detail' i.get_category_display i.slug %}">{{ i.name }}</a><p>
 			<p class="price">${{ i.price }}</p>
+
+			<p class="pop">{{ i.purchased_count }}</p>
+			<p class="date">{{ i.pub_date|date:"U" }}</p>
 		</div>
 		<p class="description">
-			{% if i.fit %}{{ i.get_fit_display }}{% endif %} {{ i.get_clothing_type_display }}
+			{% if i.fit %}{{ i.get_fit_display }}{% endif %} {{ i.get_category_display }}
 		</p>
 	</div>
 </div>

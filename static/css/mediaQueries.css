@@ -1,4 +1,12 @@
 /*mediaQueries.css*/
+@media only screen and (max-width: 950px) {
+	.shopWrapper{
+		flex-flow:column wrap;
+	}
+	.shopWrapper:not(.listView){
+		flex-direction: column-reverse;
+	}
+}
 @media only screen and (max-width: 875px) { /*This is when the navbar gets too squished, and I do other stuff here, too*/
 	.navWrapper{
 		flex-flow:column wrap;

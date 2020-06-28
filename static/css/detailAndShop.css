@@ -1,0 +1,68 @@
+/*detailAndShop.css*/
+.shopWrapper{
+	display:flex;
+}
+main{
+	padding:50px;
+	flex:1;
+}
+aside{
+	min-width:350px;
+	background:#ffe0e0;
+	padding:1.2em;
+}
+aside h1{margin:0 0 0.5em 0; color:#333;}
+aside h1:first-of-type{font-size:1.7em;}
+aside p, li{font-family:"Roboto Mono", monospace; color:#444;}
+aside label{text-transform: lowercase;}
+
+.itemImage{
+	width:100%;
+}
+.smallImageWrapper{margin-top:5px;}
+.smallImageWrapper img{
+	width:4em;
+	cursor: pointer;
+}
+
+.tagWrapper{
+	margin:1.2em 0 0.6em 0;
+}
+.nameWrapper{
+	display:flex;
+	align-items: center;
+}
+.nameWrapper h2{
+	margin-left:auto;
+}
+.nameWrapper h1, h2{
+	margin:0;
+}
+
+main p{
+	font-size:18px;
+}
+
+.buy{
+	background-color: #5E5790;
+	border: none;
+	color: white;
+	text-align: center;
+	padding:0.75em;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	width:100%;
+}
+
+.filter:not(:first-of-type){
+	margin-top:10px;
+}
+.filter select{
+	width:100%;
+}
+
+.search{
+	margin-bottom:10px;
+}

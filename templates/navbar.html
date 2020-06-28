@@ -2,14 +2,14 @@
 <nav>
 	<div class="navWrapper">
 		<div class="navThird">
-			<a href="{% url 'home:index' %}"><img src="{% static 'images/favicon.ico' %}"/></a>
+			<a href="{% url 'home:index' %}"><img src="{% static 'images/logosmall.png' %}"/></a>
 		</div>
 	    <div class="navThird">
 	    	<a href="{% url 'home:index' %}"><img height="40px" src="{% static 'images/logo.png' %}"/></a>
 	    </div>
 	    <div class="navThird">
-			<a href="#" id="new" {% if request.path == "/" %}onmouseover="miniShop()" onfocus="miniShop()" onfocusout="closeMiniShop()" aria-haspopup="true"{% endif %}>new releases</a>
-			<a href="#">shop all</a>
+			<a href="{% url 'shop:shop_new' %}" id="new" {% if request.path == "/" %}onmouseover="miniShop()" onfocus="miniShop()" onfocusout="closeMiniShop()" aria-haspopup="true"{% elif request.path == "/shop/new" %}class="active"{% endif %}>new releases</a>
+			<a href="{% url 'shop:shop_all' %}" {% if request.path == "/shop/" %}class="active"{% endif %}>shop all</a>
 			<a href="#" title="0 items in cart"><i class="fas fa-shopping-cart"></i></a>
 		</div>
 	</div>

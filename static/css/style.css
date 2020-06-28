@@ -10,7 +10,7 @@ html, body{
 	width:100%;
 	padding:0;
 	margin:0;
-	background:#fe6464;
+	background:#ffcdcd; /*background:#fe6464;*/
 	height:auto;
 }
 
@@ -21,6 +21,22 @@ h1, h2, h3, h4, h5, h6, p, a, li, ul, ol, input, label, button, span, i, b, stro
 h1, h2, h3, h4, h5, h6{
   font-weight:400;
   line-height: 1.3;
+}
+
+.warning{color: #fe5;}
+.success{color: #2d5;}
+.info{color: #25d;}
+.error{color:#fe6464; font-weight:bold;}
+
+.message{color:white !important;}
+.message.warning{background-color:#fe5;}
+.message.success{background-color:#2d5;}
+.message.info{background-color:#25d;}
+.message.error{background-color:#fe6464;}
+
+.flex{
+	display:flex;
+	align-items: center;
 }
 
 nav{
@@ -37,8 +53,8 @@ nav{
 	width:100%;
 	display:flex;
 	flex-flow:row wrap;
-	border-bottom:1px solid #56508c;
-	background:#bb5191; /*f7f7f7*/
+	border-bottom:1px solid #bb5191;/*#56508c;*/
+	background: #ffe0e0; /*background:#bb5191;*/ /*f7f7f7*/
 }
 .navThird{
 	flex:0.33333333333333;
@@ -55,7 +71,7 @@ nav{
 .navThird:first-of-type img{
 	width:50px;
 	padding-right: 13px;
-	border-right: 1px solid #dbdbdb;
+	border-right: 1px solid #bb5191;
 }
 .navThird:last-of-type{
 	justify-content: flex-end;
@@ -69,8 +85,8 @@ nav a{text-decoration: none;}
 	font-size:17px;
 }
 .navThird:last-of-type a:hover, .navThird:last-of-type a:focus, .navThird:last-of-type a.active{
-	border-bottom-color:#111;
-	background:#f7f7f7; /*f2f2f2*/
+	border-bottom-color: #56508c;/*#111*/
+	background: #fbd6da; /*#f7f7f7*/ /*f2f2f2*/
 }
 
 .secondaryNavWrapper{
@@ -78,7 +94,8 @@ nav a{text-decoration: none;}
 	padding:5px;
 	display:flex;
 	justify-content: center;
-	background: #fe6464; /*fff*/
+	background: #fdb1b1; 
+	/*#fe6464*/ /*fff*/
 	flex-wrap: wrap;
 }
 .secondaryNavWrapper a{
@@ -94,7 +111,7 @@ nav a{text-decoration: none;}
 	position:fixed;
 	display:none;
 	z-index: 1;
-	background:#f6508c;
+	background: #ffe0e0;/*background:#f6508c;*/
 	padding:0 50px;
 	border-bottom:1px solid #56508c;
 	width:100%;
@@ -123,7 +140,7 @@ nav a{text-decoration: none;}
 
 
 .hero{
-	background:#fea602;
+	background:#83c9ff;/*background:#fea602;*/
 	padding:50px;
 }
 .hero h1{
@@ -146,7 +163,7 @@ nav a{text-decoration: none;}
 	background-position:center center;
 	-webkit-background-size: contain !important;
 	background-size: contain;
-	background-color: #bb5191;
+	background-color: #fdb1b1;
 	max-height:400pt; 
 }
 .bigImage img{visibility: hidden;}
@@ -162,16 +179,26 @@ nav a{text-decoration: none;}
 	display:flex;
 	flex-flow:row wrap;
 }
+.cardWrapper.isotope{
+	display:block;
+}
 .cardWrapper.home{
 	margin-top:1em;
 }
 
+.tag{
+	border:1px solid;
+	display:inline-block;
+	border-radius:2px;
+	padding:2.5px;
+	background:rgba(255,255,255,0.5);
+	font-family: "Roboto Mono", monospace;
+}
 .shopCard{
 	flex:0.333333333333333;
-	max-width:33.3333333333333%;
-	width:33.3333333333333%;
+	max-width:33.329999999999999999999999%;
+	width:33.329999999999999999999999%;
 	padding:15px;
-
 }
 .shopCard img{
 	width:100%;
@@ -191,6 +218,12 @@ nav a{text-decoration: none;}
 }
 .cardCaption .price{margin-left:auto;}
 .cardCaption .description{color:#575757;}
+.captionInfo .date, .captionInfo .pop{display:none;}
+
+.cardCaption .tagWrapper{
+	margin:5px 0;
+}
+.cardCaption .tagWrapper .tag{font-size:12px; background:transparent; border:0px;}
 
 .seeAll{
 	color:#56508c;
@@ -227,26 +260,28 @@ footer .columns div{
 footer .columns h4{
 	margin:20px 0 5px 0;
 	font-weight:bold;
+	color:#d7d7d7;
 }
 footer .columns a{
 	display:block;
 	font-family: 'Roboto Mono', monospace;
 	text-decoration: none;
 	line-height:1.5;
+	color:#d7d7d7;
 }
 footer .columns a:hover{
 	text-decoration:underline;
-	color: #383838
+	color:white; /*color: #383838 changed to this with the new footer background*/
 }
 footer .legal{
 	font-size:14px;
 	text-align: center;
 	margin-top:10px;
 }
-footer .legal p{margin:0; font-family:monospace;}
+footer .legal p{margin:0; font-family:monospace; color:#d7d7d7;}
 footer .legal:last-of-type{padding-bottom:20px;}
 
-footer .legal a{font-family: 'Roboto Mono', monospace;}
+footer .legal a{font-family: 'Roboto Mono', monospace; color:#d7d7d7;}
 footer .legal a:hover{
-	color:#383838;
+	color:white; /*color:#383838;*/
 }
