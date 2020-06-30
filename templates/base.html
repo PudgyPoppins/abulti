@@ -28,17 +28,17 @@
 </head>
 
 <body>
-	{% include "navbar.html" %}
-	
 	{% if messages %}
 	<ul class="messages">
 	    {% for message in messages %}
-	    <li{% if message.tags %} class="notification {{ message.tags }}"{% endif %}>
-	    	<button class="delete" onclick="removeNotification(this)"></button>{{ message }}
+	    <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>
+	    	<i class="fas fa-times close" onclick="removeNotification(this)"></i>{{ message }}
 		</li>
 	    {% endfor %}
 	</ul>
 	{% endif %}
+
+	{% include "navbar.html" %}
 
 	{% block content %}
 	{% endblock %}
@@ -65,10 +65,10 @@
 		</div>
 
 		<div class="legal">
-			<p>By using this site, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+			<p>By using this site, you agree to the <a href="#">Terms of Service</a> and <a href="{% url 'home:privacy' %}">Privacy Policy</a>.</p>
 		</div>
 		<div class="legal">
-			<p>Copyright &copy; 2020 by Abulti Apparel. All rights reserved.</p>
+			<p>Copyright &copy; {% now "Y" %} by Abulti Apparel. All rights reserved.</p>
 		</div>
 	</footer>
 

@@ -11,6 +11,7 @@ function minUpdate() {
 	var x = min.value;
 	document.getElementById("minprice").innerHTML = x;
 	max.min = x;
+	maxUpdate(); //for some stupid reason javascript is weird and doesn't update the display first time, so I do it here and idk why
 	if(min.value > max.value){
 		max.value = x;
 		maxUpdate();
@@ -28,7 +29,7 @@ $( ".cardWrapper" ).addClass( "isotope" );
 var checkboxFilter;
 var sRegex;
 var minPrice = 0;
-var maxPrice = 1000000000000000;
+var maxPrice = Number.MAX_VALUE; //idk, maybe we'll sell shirts that cost over $2^53.00
 
 var $container = $('.cardWrapper').isotope({
 	itemSelector: '.shopCard',

@@ -28,7 +28,22 @@ h1, h2, h3, h4, h5, h6{
 .info{color: #25d;}
 .error{color:#fe6464; font-weight:bold;}
 
-.message{color:white !important;}
+.messages{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.message a{color:white !important;}
+.message{
+	color:white !important;
+	padding:10px 25px 10px 10px;
+}
+.message .close{
+	position:absolute;
+	right:15px;
+	cursor:pointer;
+}
 .message.warning{background-color:#fe5;}
 .message.success{background-color:#2d5;}
 .message.info{background-color:#25d;}
@@ -241,6 +256,24 @@ nav a{text-decoration: none;}
 .seeAll:hover::after{
 	margin-left:10px;
 	transition:0.2s;
+}
+
+.buy{
+	background-color: #5E5790;
+	border: none;
+	color: white;
+	text-align: center;
+	padding:0.75em;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	width:100%;
+}
+.buy:disabled{
+	background-color:#666475;
+	color:#ccc;
+	cursor:not-allowed;
 }
 
 

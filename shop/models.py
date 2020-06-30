@@ -55,3 +55,15 @@ class Item(models.Model):
 		if not self.slug:
 			self.slug = slugify(self.name)
 		super(Item, self).save(*args, **kwargs)
+
+
+class OrderItem(models.Model):
+	item = models.OneToOneField(Item, on_delete=models.CASCADE)
+	quantity = models.IntegerField(default=1)
+	size = models.ForeignKey(Size, on_delete=models.SET_NULL, null=True, blank=True)
+	
+	def __str__(self):
+		return self.item.name
+
+#class Order(models.Model):
+	#order_item = models.ForeignKey(OrderItem, on_delete=models.CASCADE)

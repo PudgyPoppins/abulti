@@ -10,7 +10,7 @@
 	    <div class="navThird">
 			<a href="{% url 'shop:shop_new' %}" id="new" {% if request.path == "/" %}onmouseover="miniShop()" onfocus="miniShop()" onfocusout="closeMiniShop()" aria-haspopup="true"{% elif request.path == "/shop/new" %}class="active"{% endif %}>new releases</a>
 			<a href="{% url 'shop:shop_all' %}" {% if request.path == "/shop/" %}class="active"{% endif %}>shop all</a>
-			<a href="#" title="0 items in cart"><i class="fas fa-shopping-cart"></i></a>
+			<a href="{% url 'shop:cart' %}" title="{{ cart|length }} item{{ cart|length|pluralize }} in cart"><i class="fas fa-shopping-cart"></i></a>
 		</div>
 	</div>
 	

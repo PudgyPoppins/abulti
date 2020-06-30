@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processor.cart', #custom context processor here
             ],
         },
     },
@@ -142,6 +143,9 @@ EMAIL_HOST_USER = 'abultiapparel@gmail.com'
 with open('EMAIL_PASS.text') as f:
     EMAIL_HOST_PASSWORD = f.read().strip()
 
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+CART_SESSION_ID = 'cart'
 
 #Change these to True later
 SESSION_COOKIE_SECURE = False

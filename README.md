@@ -25,6 +25,20 @@ This is the code for the *massively* popular Abulti Apparel website
 	* Change robots.txt to allow site indexing
 	* Create a .xml sitemap for google to index the site in the first place
 
+* Payment-processing needs:
+	* Users can add - without signing in - items to a cart. DONE
+		* Without signing in is probably done by sessions
+		* Users can specify what sizes for relevant items they want DONE
+	* Users can review their cart at any time, and delete any items from their cart. DONE
+		* Users can see the total price, change quantities of the items they are buying, etc DONE
+
+	* When a user wishes to "check out", they can review their cart, then enter their credit card information
+	* A payment is made (via Stripe), so that we get money and they lose money
+	* A model object is created, an order, that tells us what items they purchased and what sizes. It also tells us their address and email.
+		* The order object is saved to the database (we can see it on the admin site), and a copy is emailed to us.
+		* We email them automatically that their order has been processed, and a copy of the order.
+		* We email them manually that we have shipped their items to them.
+
 
 ## Questions to answer for moving forward (website related and bussiness related):
 

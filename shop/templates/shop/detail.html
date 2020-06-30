@@ -38,7 +38,24 @@
 		<h2>${{ item.price }}</h2>
 	</div>
 
-	<button class="buy" style="margin-top:1em">Buy Item</button>
+	<form action="{% url "shop:cart_add" item.id %}" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="quantity" value="1">
+		{% if item.size.all %}
+		<div class="sizeSelect">
+			<p>Select a size:</p>
+			<select id="sizeSelectMain" name="size">
+				{% for s in item.size.all %}
+				<option name="size" value="{{ s.name }}">{{ s.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		{% else %}<input type="hidden" name="size" value="">
+		{% endif %}
+		<button class="buy" style="margin-top:1em" {% if not item.in_stock %}disabled{% endif %}>
+			{% if item.in_stock %}Add to Cart{% else %}Out of Stock{% endif %}
+		</button>
+	</form>
 
 	<p>{% if item.fit %}{{ item.get_fit_display }}{% endif %} <a href="{% url 'shop:by_category' item.get_category_display %}">{{ item.get_category_display }}</a></p>
 
@@ -53,7 +70,24 @@
 <aside>
 	<h1>{{ item.name }}</h1>
 
-	<button class="buy">Buy Item</button>
+	<form action="{% url "shop:cart_add" item.id %}" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="quantity" value="1">
+		{% if item.size.all %}
+		<div class="sizeSelect">
+			<p>Select a size:</p>
+			<select id="sizeSelectAside" name="size">
+				{% for s in item.size.all %}
+				<option name="size" value="{{ s.name }}">{{ s.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		{% else %}<input type="hidden" name="size" value="">
+		{% endif %}
+		<button class="buy" style="margin-top:1em" {% if not item.in_stock %}disabled{% endif %}>
+			{% if item.in_stock %}Add to Cart{% else %}Out of Stock{% endif %}
+		</button>
+	</form>
 
 	<p class="price">${{ item.price }}</p>
 	<p>{% if item.fit %}{{ item.get_fit_display }}{% endif %} {{ item.get_category_display }}</p>
@@ -68,4 +102,19 @@
 	{% endif %}
 </aside>
 </div>
+
+<script>
+	var selectMain = document.getElementById("sizeSelectMain")
+	var selectAside = document.getElementById("sizeSelectAside")
+	selectMain.addEventListener("change", updateSelectAside);
+	function updateSelectAside(){
+		selectAside.value = selectMain.value;
+	}
+
+	selectAside.addEventListener("change", updateSelectMain);
+	function updateSelectMain(){
+		selectMain.value = selectAside.value;
+	}
+	updateSelectMain();
+</script>
 {% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+
+<h1>Cart</h1>
+{% if cart|length > 0 %}
+<p>Total Price: ${{ cart.get_total_price }}</p>
+
+<table>
+<thead>
+	<tr>
+		<th>Item</th>
+		<th>Quantity</th>
+		<th>Remove</th>
+		<th>Unit Price</th>
+		<th>Price</th>
+	</tr>
+</thead>
+<tbody>
+{% for i in cart %}
+	{% with item=i.item  %}
+		<tr>
+			<td>{% if i.size != "" %}{{ i.size }} {% endif %}{{ item.name }}</td>
+			<td>
+				<form action="{% url "shop:cart_add" item.id %}" method="post">
+					{% csrf_token %}
+					{{ i.update_quantity_form.quantity }}
+					{{ i.update_quantity_form.update }}
+					<input type="hidden" name="size" value="{{ i.size }}">
+					<input type="submit" value="Update">
+				</form>
+			</td>
+			<td>
+				<form action="{% url "shop:cart_remove" item.id %}" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="item_id" value="{{ item.id }}">
+					<input type="hidden" name="size" value="{{ i.size }}">
+
+					<input type="submit" value="Remove">
+				</form>
+			</td>
+			<td>${{ item.price }}</td>
+			<td>${{ i.total_price }}</td>
+		</tr>
+	{% endwith %}
+{% endfor %}
+<tr>
+	<td><b>Total</b></td>
+	<td colspan="num"><b>${{ cart.get_total_price }}</b></td>
+</tr>
+</tbody>
+</table>
+
+
+{% else %}
+<p>your cart is empty. <a href="{% url 'shop:shop_all' %}">start shopping.</a></p>
+{% endif %}
+
+{% endblock %}
