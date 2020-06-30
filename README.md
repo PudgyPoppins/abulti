@@ -32,6 +32,8 @@ This is the code for the *massively* popular Abulti Apparel website
 	* Users can review their cart at any time, and delete any items from their cart. DONE
 		* Users can see the total price, change quantities of the items they are buying, etc DONE
 
+	* Delete this when done: Add migration folders to .gitignore
+
 	* When a user wishes to "check out", they can review their cart, then enter their credit card information
 	* A payment is made (via Stripe), so that we get money and they lose money
 	* A model object is created, an order, that tells us what items they purchased and what sizes. It also tells us their address and email.
