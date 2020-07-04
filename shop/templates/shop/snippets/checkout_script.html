@@ -1,0 +1,24 @@
+{% load static %}
+<script>
+
+var stripe = Stripe('{{ stripe_pub_key }}');
+var elements = stripe.elements({locale: window.__exampleLocale});
+
+var cardNumber = elements.create('cardNumber', {
+	style: style,
+});
+cardNumber.mount('#card-number');
+
+var cardExpiry = elements.create('cardExpiry', {
+	style: style,
+});
+cardExpiry.mount('#card-expiry');
+
+var cardCvc = elements.create('cardCvc', {
+	style: style,
+});
+cardCvc.mount('#card-cvc');
+
+registerElements([cardNumber, cardExpiry, cardCvc]);
+
+</script>

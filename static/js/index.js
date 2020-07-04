@@ -4,8 +4,9 @@ function removeNotification(el){
 	el.parentNode.parentNode.removeChild(el.parentNode)
 }
 
+var offsetHeight = document.getElementsByClassName('navWrapper')[0].offsetHeight + document.getElementsByClassName('messages')[0].offsetHeight
+
 function miniShop(){
-	var offsetHeight = document.getElementsByClassName('navWrapper')[0].offsetHeight + document.getElementsByClassName('messages')[0].offsetHeight
 	document.getElementById("miniShop").style.top = offsetHeight + 1 + "px";
 	//^ here I determine the top offset for the mini shop via javascriwindow.innerHeightpt, because some devices would use different fonts, and plus it's easier on resizing
 
@@ -27,3 +28,7 @@ function closeMiniShop(){
 	document.getElementsByTagName("html")[0].style.overflow = "unset";
 	document.getElementsByTagName("body")[0].style.overflow = "unset";
 }
+
+var body = document.getElementsByTagName("body")[0];
+body.style.paddingBottom = document.getElementsByTagName("footer")[0].offsetHeight + "px";
+//^ this gives space at the bottom for the footer

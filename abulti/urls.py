@@ -23,3 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
+handler403 = 'home.views.handler403'
+handler404 = 'home.views.handler404'
+

@@ -1,0 +1,15 @@
+<h1>New Order Created!</h1>
+<p>A new order was recently filled. Take a look:</p>
+
+<ul>
+	{% for item in order.item.all %}
+	<li>{{ item }}</li>
+	{% endfor %}
+</ul>
+
+<p>The customer, {{ order.name }}, can be contacted at {{ order.email }}. {{ order.name }} lives at {{ order.shipping_address }}.</p>
+
+<p>They paid ${{ order.get_total_price }}.</p>
+
+<p>Once you read this email, let the customer know that their order is being processed by changing "being_processed" to true on the <a href="https://abulti.com/admin/shop/order/{{ order.id }}/change/">admin site</a>. You can also email them that their order is being processed, too.</p>
+

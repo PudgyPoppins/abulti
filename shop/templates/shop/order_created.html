@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Success!{% endblock %}
+
+{% block content %}
+<h1>Save this page!</h1>
+<h2>Refer back to this page at any time to track your order.</h2>
+
+<h3>Order:</h3>
+<ul>
+	{% for item in order.item.all %}
+	<li>{{ item }}</li>
+	{% endfor %}
+</ul>
+<p><b>Total: ${{ order.get_total_price }}</b></p>
+
+<p>Currently, your order 
+	{% if order.received %} should be delivered. <a href="mailto:abultiapparel@gmail.com">Email us</a> if you can't find it.
+	{% elif order.being_delivered } is in the mail. For your privacy, your address is not listed here, but you can <a href="mailto:abultiapparel@gmail.com">email us</a> to confirm where it is being sent to.
+	{% elif order.being_processed %} is being made. Every Abulti Apparel item is hand-made, and yours is no exception.
+	{% else %} is being processed.
+	{% endif %}
+</p>
+{% endblock %}

@@ -277,9 +277,16 @@ nav a{text-decoration: none;}
 }
 
 
+body{
+	position: relative;
+	min-height: 100vh;
+}
 footer{
 	background:#56508c;
 	padding:0 10px;
+	position: absolute;
+	width:100%;
+	bottom:0;
 }
 footer .columns{
 	display:flex;

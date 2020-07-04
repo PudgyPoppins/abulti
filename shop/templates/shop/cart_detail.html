@@ -24,12 +24,12 @@
 		<tr>
 			<td>{% if i.size != "" %}{{ i.size }} {% endif %}{{ item.name }}</td>
 			<td>
-				<form action="{% url "shop:cart_add" item.id %}" method="post">
+				<form action="{% url "shop:cart_add" item.id %}" method="post" id="form{{ forloop.counter0 }}">
 					{% csrf_token %}
 					{{ i.update_quantity_form.quantity }}
 					{{ i.update_quantity_form.update }}
 					<input type="hidden" name="size" value="{{ i.size }}">
-					<input type="submit" value="Update">
+					<!--<input type="submit" value="Update">-->
 				</form>
 			</td>
 			<td>
@@ -38,7 +38,7 @@
 					<input type="hidden" name="item_id" value="{{ item.id }}">
 					<input type="hidden" name="size" value="{{ i.size }}">
 
-					<input type="submit" value="Remove">
+					<button><i class="fas fa-trash-alt"></i></button>
 				</form>
 			</td>
 			<td>${{ item.price }}</td>
@@ -48,11 +48,24 @@
 {% endfor %}
 <tr>
 	<td><b>Total</b></td>
-	<td colspan="num"><b>${{ cart.get_total_price }}</b></td>
+	<td><b>${{ cart.get_total_price }}</b></td>
 </tr>
 </tbody>
 </table>
 
+<a href="{% url 'shop:order_create' %}"><button>Check Out</button></a>
+<a href="{% url 'shop:shop_all' %}"><button>Keep Shopping</button></a>
+
+<script>
+	var selects = document.getElementsByTagName('select');
+	for(var i=0; i<selects.length; i++){
+		selects[i].id = "select" + i.toString();
+		selects[i].addEventListener("change", submitForm)
+	}
+	function submitForm(){
+		document.getElementById("form" + this.id.slice(-1)).submit(); //submit the form that the select respectively refers to
+	}
+</script>
 
 {% else %}
 <p>your cart is empty. <a href="{% url 'shop:shop_all' %}">start shopping.</a></p>

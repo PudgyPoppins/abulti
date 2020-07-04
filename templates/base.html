@@ -22,21 +22,23 @@
 	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
 
-	{% if 'shop' in request.path %}<link type="text/css" href="{% static 'css/detailAndShop.css' %}" rel="stylesheet">{% endif %}
+	{% if 'shop' in request.path or 'cart' in request.path %}<link type="text/css" href="{% static 'css/detailAndShop.css' %}" rel="stylesheet">{% endif %}
+
+	{% block head %}{% endblock %}
 
 	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
-	{% if messages %}
 	<ul class="messages">
+		{% if messages %}
 	    {% for message in messages %}
 	    <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>
 	    	<i class="fas fa-times close" onclick="removeNotification(this)"></i>{{ message }}
 		</li>
 	    {% endfor %}
+	    {% endif %}
 	</ul>
-	{% endif %}
 
 	{% include "navbar.html" %}
 

@@ -1,0 +1,13 @@
+<h1>Your Order at Abulti Apparel</h1>
+<p>Hello {{ order.name }}! You recently created an order at Abulti Apparel: </p>
+
+<ul>
+	{% for item in order.item.all %}
+	<li>{{ item }}</li>
+	{% endfor %}
+</ul>
+<p>Total: ${{ order.get_total_price }}.</p>
+
+<p>We'll send this to {{ order.shipping_address }}.</p>
+
+<p>You may get more emails in the future from us about the status of your order. If you have any questions, or would like to request a refund, please <a href="mailto:abultiapparel@gmail.com">email us</a> or respond to this email. If you did not make this order, respond to this email and check that your credit card doesn't have any charges from ABULTI APPAREL.</p>

@@ -32,14 +32,17 @@ This is the code for the *massively* popular Abulti Apparel website
 	* Users can review their cart at any time, and delete any items from their cart. DONE
 		* Users can see the total price, change quantities of the items they are buying, etc DONE
 
-	* Delete this when done: Add migration folders to .gitignore
+	* When a user wishes to "check out", they can review their cart, then enter their credit card information DONE
+	* A payment is made (via Stripe), so that we get money and they lose money DONE
+	* The purchase count of the items purchased is increased DONE
+	* A model object is created, an order, that tells us what items they purchased and what sizes. It also tells us their address and email. DONE
+		* The order object is saved to the database (we can see it on the admin site), and a copy is emailed to us. DONE
+		* We email them automatically that their order has been processed, and a copy of the order. KIND OF DONE
+		* We email them manually that we have shipped their items to them. OK
 
-	* When a user wishes to "check out", they can review their cart, then enter their credit card information
-	* A payment is made (via Stripe), so that we get money and they lose money
-	* A model object is created, an order, that tells us what items they purchased and what sizes. It also tells us their address and email.
-		* The order object is saved to the database (we can see it on the admin site), and a copy is emailed to us.
-		* We email them automatically that their order has been processed, and a copy of the order.
-		* We email them manually that we have shipped their items to them.
+	* The user, still without signing in, can see what stage their order is in: processed, delivering, delivered DONE
+
+	* The user can request a refund, with a reason, and we could maybe grant it COVERED IN THE EMAIL SENT TO THEM
 
 
 ## Questions to answer for moving forward (website related and bussiness related):
@@ -49,8 +52,6 @@ This is the code for the *massively* popular Abulti Apparel website
 	* Should we save credit card information for customers? That's possible. Do other sites do this? Is it a security thing?
 
 * Under what circumstances would we offer somebody a return?
-
-* What does it mean to be alive?
 
 * How do we ensure that our packages arrive at their destinations?
 

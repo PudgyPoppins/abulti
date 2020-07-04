@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 with open('SECRET_KEY.text') as f:
-    SECRET_KEY = f.read().strip()
+	SECRET_KEY = f.read().strip()
 
 with open('DEBUG.text') as f:
-    DEBUG = f.read().strip() != 'False'
+	DEBUG = f.read().strip() != 'False'
 
 ALLOWED_HOSTS = ['192.168.0.179', '174.52.169.151', 'www.174.52.169.151', 'abulti.com', 'www.abulti.com' ]
 
@@ -31,46 +31,49 @@ ALLOWED_HOSTS = ['192.168.0.179', '174.52.169.151', 'www.174.52.169.151', 'abult
 # Application definition
 
 INSTALLED_APPS = [
-    'accounts.apps.AccountsConfig',
-    'home.apps.HomeConfig',
-    'shop.apps.ShopConfig',
-    'blog.apps.BlogConfig',
+	'django_countries',
+	'stripe',
 
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+	'accounts.apps.AccountsConfig',
+	'home.apps.HomeConfig',
+	'shop.apps.ShopConfig',
+	'blog.apps.BlogConfig',
+
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'abulti.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'shop.context_processor.cart', #custom context processor here
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+				'shop.context_processor.cart', #custom context processor here
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'abulti.wsgi.application'
@@ -80,10 +83,10 @@ WSGI_APPLICATION = 'abulti.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
 }
 
 
@@ -91,18 +94,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 
@@ -134,19 +137,31 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-ADMINS = [('Admin', 'apcrowd2020@gmail.com'),]
+ADMINS = [('Admin', 'abultiapparel@gmail.com'), ('Bennett', 'pudgypoppins@gmail.com')]
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'abultiapparel@gmail.com'
 with open('EMAIL_PASS.text') as f:
-    EMAIL_HOST_PASSWORD = f.read().strip()
+	EMAIL_HOST_PASSWORD = f.read().strip()
 
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 CART_SESSION_ID = 'cart'
 
+if DEBUG:
+	STRIPE_PUBLIC_KEY = 'pk_test_51GzTUGDz56YLeDnQ4t6mcfvRnecet54tjbKzcHEVWrEf5MiHpWi7wMK5L8GOavr7t0svPqDsSBfV0MSWC9obVDv600c4CqM2sX'
+	with open('STRIPE_SECRET_KEY_TEST.text') as f:
+		STRIPE_SECRET_KEY = f.read().strip()
+else:
+	STRIPE_PUBLIC_KEY = 'pk_live_51GzTUGDz56YLeDnQafhcZ2qxvqUOQyJbnzokm2IZuipZhVgKJOvCm6jRtVwVmNZa9zOfUjBJmtD9CVmyxSAEFuml00CVf58NZB'
+	with open('STRIPE_SECRET_KEY.text') as f:
+		STRIPE_SECRET_KEY = f.read().strip()
+
+
 #Change these to True later
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
+
+EMAIL_SUBJECT_PREFIX = '[Abulti]'
