@@ -18,10 +18,6 @@ def index(request):
 
 	return render(request, 'home/index.html', context)
 
-def privacy(request):
-	return render(request, 'home/index.html')
-
-
 
 def handler403(request, *args, **argv):
 	response = render(request, '403.html')

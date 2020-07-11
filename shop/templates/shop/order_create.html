@@ -3,113 +3,175 @@
 {% block title %}Checkout{% endblock %}
 {% block head %}<script src="https://js.stripe.com/v3/"></script>{% endblock %}
 
-{% block content %}
-<h1>Checkout</h1>
+{% block full_width %}
+<h1 id="checkoutTitle">Checkout</h1>
 
-<h2>Order Summary</h2>
-<ul>
-{% for i in cart %}
-	{% with item=i.item  %}
-	<li>{{ i.quantity }} {% if i.size != "" %}{{ i.size }} {% endif %}{{ item.name }} for ${{ i.total_price }}</li>
-	{% endwith %}
-{% endfor %}
-</ul>
-<p>Total price: ${{ cart.get_total_price }}</p>
+<div class="formContainer">
 
-<h2>Form</h2>
+	<div class="formWrapper">
+		<h2>Form</h2>
+		<form method="POST" id="form">
+			{{ form.non_field_errors }}
+			{% csrf_token %}
 
-<form method="POST" id="form">
-	{{ form.non_field_errors }}
-	{% csrf_token %}
+			<h3 id="contactInformation">Contact Information</h3>
 
-	<h3>Contact Information</h3>
-	{{ form.name.label_tag }}
-	{{ form.name }}
-	<p>{{ form.name.errors }}</p>
+			<div class="fieldRow">
+				<div class="fieldSection">
+					{{ form.name.label_tag }}
+					{{ form.name }}
+					<p class="error">{{ form.name.errors }}</p>
+				</div>
 
-	{{ form.email.label_tag }}
-	{{ form.email }}
-	<p>{{ form.email.errors }}</p>
-	
-	<h3>Shipping address</h3>
+				<div class="fieldSection">
+					{{ form.email.label_tag }}
+					{{ form.email }}
+					<p class="error">{{ form.email.errors }}</p>
+				</div>
+			</div>
+			
+			<h3>Shipping address</h3>
 
-	{{ form.shipping_address.label_tag }}
-	{{ form.shipping_address }}
-	<p>{{ form.shipping_address.errors }}</p>
-	
-	{{ form.shipping_address2.label_tag }}
-	{{ form.shipping_address2 }}
-	<p>{{ form.shipping_address2.errors }}</p>
+			<div class="fieldSection">
+				{{ form.shipping_address.label_tag }}
+				{{ form.shipping_address }}
+				<p class="error">{{ form.shipping_address.errors }}</p>
+			</div>
+			
+			<div class="fieldSection">
+				{{ form.shipping_address2.label_tag }}
+				{{ form.shipping_address2 }}
+				<p class="error">{{ form.shipping_address2.errors }}</p>
+			</div>
 
-	{{ form.shipping_city.label_tag }}
-	{{ form.shipping_city }}
-	<p>{{ form.shipping_city.errors }}</p>
+			<div class="fieldRow">
+				<div class="fieldSection">
+					{{ form.shipping_city.label_tag }}
+					{{ form.shipping_city }}
+					<p class="error">{{ form.shipping_city.errors }}</p>
+				</div>
 
-	{{ form.shipping_state.label_tag }}
-	{{ form.shipping_state }}
-	<p>{{ form.shipping_state.errors }}</p>
+				<div class="fieldSection">
+					{{ form.shipping_state.label_tag }}
+					{{ form.shipping_state }}
+					<p class="error">{{ form.shipping_state.errors }}</p>
+				</div>
+			</div>
 
-	{{ form.shipping_zip.label_tag }}
-	{{ form.shipping_zip }}
-	<p>{{ form.shipping_zip.errors }}</p>
+			<div class="fieldRow">
+				<div class="fieldSection">
+					{{ form.shipping_zip.label_tag }}
+					{{ form.shipping_zip }}
+					<p class="error">{{ form.shipping_zip.errors }}</p>
+				</div>
 
-	{{ form.shipping_country.label_tag }}
-	{{ form.shipping_country }}
-	<p>{{ form.shipping_country.errors }}</p>
+				<div class="fieldSection">
+					{{ form.shipping_country.label_tag }}
+					{{ form.shipping_country }}
+					<p class="error">{{ form.shipping_country.errors }}</p>
+				</div>
+			</div>
 
-	{{ form.same_billing_address }}
-	{{ form.same_billing_address.label_tag }}
-	<p>{{ form.same_billing_address.errors }}</p>
+			{{ form.same_billing_address }}
+			{{ form.same_billing_address.label_tag }}
+			<p class="error">{{ form.same_billing_address.errors }}</p>
 
-	<div id="billing">
-		<h3>Billing address</h3>
+			<div id="billing">
+				<h3>Billing address</h3>
 
-		{{ form.billing_address.label_tag }}
-		{{ form.billing_address }}
-		<p>{{ form.billing_address.errors }}</p>
-		
-		{{ form.billing_address2.label_tag }}
-		{{ form.billing_address2 }}
-		<p>{{ form.billing_address2.errors }}</p>
+				<div class="fieldSection">
+					{{ form.billing_address.label_tag }}
+					{{ form.billing_address }}
+					<p class="error">{{ form.billing_address.errors }}</p>
+				</div>
+				
+				<div class="fieldSection">
+					{{ form.billing_address2.label_tag }}
+					{{ form.billing_address2 }}
+					<p class="error">{{ form.billing_address2.errors }}</p>
+				</div>
 
-		{{ form.billing_city.label_tag }}
-		{{ form.billing_city }}
-		<p>{{ form.billing_city.errors }}</p>
+				<div class="fieldRow">
+					<div class="fieldSection">
+						{{ form.billing_city.label_tag }}
+						{{ form.billing_city }}
+						<p class="error">{{ form.billing_city.errors }}</p>
+					</div>
 
-		{{ form.billing_state.label_tag }}
-		{{ form.billing_state }}
-		<p>{{ form.billing_state.errors }}</p>
+					<div class="fieldSection">
+						{{ form.billing_state.label_tag }}
+						{{ form.billing_state }}
+						<p class="error">{{ form.billing_state.errors }}</p>
+					</div>
+				</div>
 
-		{{ form.billing_zip.label_tag }}
-		{{ form.billing_zip }}
-		<p>{{ form.billing_zip.errors }}</p>
+				<div class="fieldRow">
+					<div class="fieldSection">
+						{{ form.billing_zip.label_tag }}
+						{{ form.billing_zip }}
+						<p class="error">{{ form.billing_zip.errors }}</p>
+					</div>
 
-		{{ form.billing_country.label_tag }}
-		{{ form.billing_country }}
-		<p>{{ form.billing_country.errors }}</p>
+					<div class="fieldSection">
+						{{ form.billing_country.label_tag }}
+						{{ form.billing_country }}
+						<p class="error">{{ form.billing_country.errors }}</p>
+					</div>
+				</div>
+
+			</div>
+
+			<h3>Payment</h3>
+
+			<div id="payment-form">
+				<div class="fieldSection">
+					<label>Card Number</label>
+					<div id="card-number" class="input"></div>
+				</div>
+
+				<div class="fieldRow">
+					<div class="fieldSection">
+						<label>Expiration</label>
+						<div id="card-expiry" class="input"></div>
+					</div>
+					<div class="fieldSection">
+						<label>CVC</label>
+						<div id="card-cvc" class="input"></div>
+					</div>
+				</div>
+
+				<div id="card-errors" role="alert">
+					<span class="card-error"></span>
+				</div>
+			</div>
+
+			<br>
+			<div class="fieldSection">
+				{{ form.notes.label_tag }}
+				{{ form.notes }}
+				<p class="error">{{ form.notes.errors }}</p>
+			</div>
+
+			<div class="spinner" id="spinner">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<button type="submit" data-secret="{{ client_secret }}" id="submitBtn" class="buy">Submit Payment</button>
+
+		</form>
 	</div>
 
-	<h3>Payment</h3>
-
-	<div id="payment-form">
-		<div id="card-number"></div>
-		<div id="card-expiry"></div>
-		<div id="card-cvc"></div>
-
-		<div id="card-errors" role="alert">
-			<span class="card-error"></span>
+	<div class="orderWrapper">
+		<h2>Order Summary</h2>
+		<div class="cartCheckoutForm">
+			{% include 'shop/snippets/cart_snippet.html' %}
+			<p>Total price: <b>${{ cart.get_total_price }}</b></p>
 		</div>
 	</div>
 
-	<br>
-	{{ form.notes.label_tag }}
-	{{ form.notes }}
-	<p>{{ form.notes.errors }}</p>
-
-	<div class="spinner" id="spinner"></div>
-	<button type="submit" data-secret="{{ client_secret }}" id="submitBtn">Submit Payment</button>
-
-</form>
+</div>
 
 <script src="{% url 'shop:checkout_js' %}"></script>
 {% endblock %}

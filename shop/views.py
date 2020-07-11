@@ -101,6 +101,10 @@ def order_create(request):
 	if len(cart) == 0:
 		messages.error(request, 'Add items to your cart before you check out')
 		return redirect('shop:cart')
+	
+	for item in cart:
+		item['update_quantity_form'] = AddItemForm(initial={'quantity': item['quantity'], 'update': True, 'size': item['size'],})
+
 	form = CheckoutForm()
 
 	context = {

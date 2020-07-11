@@ -13,7 +13,11 @@ COUNTRY_CODE_LIST = dict(countries).keys()
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 6)]
 
 class AddItemForm(forms.Form):
-	quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+	quantity = forms.TypedChoiceField(
+		choices=PRODUCT_QUANTITY_CHOICES, 
+		coerce=int, 
+		widget=forms.Select(attrs={'class': 'addItem'}),
+	)
 	size = forms.CharField(required=False, widget=forms.HiddenInput)
 	update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
 
@@ -109,3 +113,7 @@ class CheckoutForm(forms.Form):
 		if billing_country not in COUNTRY_CODE_LIST:
 			raise ValidationError(_('Please select a valid country'))
 		return billing_country
+
+	def __init__(self, *args, **kwargs):
+		kwargs.setdefault('label_suffix', '')  
+		super(CheckoutForm, self).__init__(*args, **kwargs)

@@ -1,0 +1,37 @@
+{% for i in cart %}
+	{% with item=i.item  %}
+	<div class="item">
+		<div class="name">
+			<form action="{% url "shop:cart_add" item.id %}" method="post" id="form{{ forloop.counter0 }}">
+				{% csrf_token %}
+				{{ i.update_quantity_form.quantity }}
+				{{ i.update_quantity_form.update }}
+				<input type="hidden" name="size" value="{{ i.size }}">
+				<!--<input type="submit" value="Update">-->
+			</form>
+			× <a href="{% url 'shop:detail' item.get_category_display item.slug %}">{% if i.size != "" %}{{ i.size }} {% endif %}{{ item.name }}</a>
+		</div>
+		<div class="price">${{ i.total_price }}</div>
+		<div class="remove">
+			<form action="{% url "shop:cart_remove" item.id %}" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="item_id" value="{{ item.id }}">
+				<input type="hidden" name="size" value="{{ i.size }}">
+
+				<button><i class="fas fa-times"></i></button>
+			</form>
+		</div>
+	</div>
+	{% endwith %}
+{% endfor %}
+
+<script>
+	var selects = document.getElementsByClassName('addItem');
+	for(var i=0; i<selects.length; i++){
+		selects[i].id = "select" + i.toString();
+		selects[i].addEventListener("change", submitForm)
+	}
+	function submitForm(){
+		document.getElementById("form" + this.id.slice(-1)).submit(); //submit the form that the select respectively refers to
+	}
+</script>

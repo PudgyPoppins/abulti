@@ -15,10 +15,10 @@
 	</div>
 	
 	<div class="secondaryNavWrapper">
-		<a href="#">about</a>
-		<a href="#">blog</a>
-		<a href="#">help</a>
-		<a href="#">shipping</a>
-		<a href="#">return policy</a>
+		<a href="{% url 'home:about' %}">about</a>
+		<a href="{% url 'blog:index' %}">blog</a>
+		<a href="{% url 'home:help' %}">help</a>
+		<a href="{% url 'home:shipping' %}">shipping</a>
+		<a href="{% url 'home:returns' %}">return policy</a>
 	</div>
 </nav>

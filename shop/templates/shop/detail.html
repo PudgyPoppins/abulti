@@ -4,7 +4,7 @@
 
 {% block title %}{{ item.name }} {% if item.fit %}{{ item.get_fit_display }}{% endif %} {% endblock %}
 
-{% block content %}
+{% block full_width %}
 
 <div class="shopWrapper">
 <main>
@@ -12,7 +12,9 @@
 		<img src="/media/{{ item.image.first.img }}" alt="{{ item.image.first.alt_text }}" class="itemImage"/>
 		<div class="smallImageWrapper">
 			{% for image in item.image.all %}
-				{% if not forloop.first %}<img src="/media/{{ image.img }}" alt="{{ image.alt_text }}"/>{% endif %}
+				{% if not forloop.first %}
+				<a href="/media/{{ image.img }}" target="_blank"><img src="/media/{{ image.img }}" alt="{{ image.alt_text }}"/></a>
+				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

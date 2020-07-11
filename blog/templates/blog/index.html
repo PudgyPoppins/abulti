@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Abulti Apparel Blog{% endblock %}
+
+{% block content %}
+<h1>Abulti Apparel Blog</h1>
+
+{% if post_list %}
+{% for post in post_list %}
+<div class="postWrapper">
+<a href="{% url 'blog:detail' post.slug %}">
+	<div class="post">
+		<h1>{{ post }}</h1>
+		<p class="date"><i class="far fa-clock"></i>{{ post.created_on|date:"F d, Y" }}</p>
+	</div>
+</a>
+</div>
+{% endfor %}
+
+{% else %}
+<h2>No published posts yet! Check back later for more Abulti Apparel content.</h2>
+{% endif %}
+
+{% endblock %}

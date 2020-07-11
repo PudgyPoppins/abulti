@@ -20,9 +20,10 @@
 	<title>{% block title %}Abulti Apparel{% endblock %}</title>
 
 	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
-	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
 
 	{% if 'shop' in request.path or 'cart' in request.path %}<link type="text/css" href="{% static 'css/detailAndShop.css' %}" rel="stylesheet">{% endif %}
+	
+	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
 
 	{% block head %}{% endblock %}
 
@@ -42,8 +43,13 @@
 
 	{% include "navbar.html" %}
 
+	{% block full_width %}
+	{% endblock %}
+
+	<div class="content">
 	{% block content %}
 	{% endblock %}
+	</div>
 
 	<footer>
 		<div class="columns">
@@ -54,20 +60,20 @@
 			</div>
 			<div>
 				<h4>Social</h4>
+				<a href="{% url 'blog:index' %}">blog</a>
 				<a href="#">instagram</a>
 				<a href="#">twitter</a>
-				<a href="#">facebook</a>
 			</div>
 			<div>
 				<h4>Help</h4>
-				<a href="#">shipping info</a>
-				<a href="#">returns</a>
-				<a href="#">contact us</a>
+				<a href="{% url 'home:help' %}">help</a>
+				<a href="{% url 'home:shipping' %}">shipping info</a>
+				<a href="{% url 'home:returns' %}">returns</a>
 			</div>
 		</div>
 
 		<div class="legal">
-			<p>By using this site, you agree to the <a href="#">Terms of Service</a> and <a href="{% url 'home:privacy' %}">Privacy Policy</a>.</p>
+			<p>By using this site, you agree to the <a href="{% url 'home:tos' %}">Terms of Service</a> and <a href="{% url 'home:privacy' %}">Privacy Policy</a>.</p>
 		</div>
 		<div class="legal">
 			<p>Copyright &copy; {% now "Y" %} by Abulti Apparel. All rights reserved.</p>

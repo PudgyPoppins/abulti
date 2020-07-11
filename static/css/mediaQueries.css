@@ -30,6 +30,14 @@
 		flex:0.5;
 		width:50%;
 	}
+
+	.formContainer{flex-direction: column-reverse; padding:0 30px;}
+	.formWrapper, .orderWrapper{margin:0; width:100%;}
+	.formWrapper{margin-top:2em;}
+}
+
+@media only screen and (max-width: 700px) { 
+	.fieldSection select{width:100%;}
 }
 
 @media only screen and (max-width: 600px) {
@@ -37,4 +45,15 @@
 	.shopCard{min-width:100%;}
 	.hero h3{max-width:100%;}
 	footer .columns{flex-flow: column wrap; margin-bottom:20px;}
+}
+
+@media only screen and (max-width: 550px) {
+	.item{font-size:16px;}
+
+	.formContainer{padding:0 15px;}
+	#checkoutTitle{margin-left:15px;}
+}
+
+@media only screen and (max-width: 350px) {
+	aside{min-width:unset;}
 }

@@ -9,7 +9,7 @@ var city;
 var state;
 var zip;
 var country;
-var form = document.querySelector('form');
+var form = document.querySelector('#form');
 var secret = document.querySelector('#submitBtn').dataset.secret
 
 var name = form.querySelector('#id_name');
@@ -52,8 +52,12 @@ toggleBilling();
 
 var style = {
 	base: {
-		color: "#32325d",
-	}
+		color: "#111",
+		padding:"4px 0 5px 0",
+	},
+	invalid: {
+		color: '#fe6464',
+  	}
 };
 
 var stripe = Stripe('{{ stripe_pub_key }}');

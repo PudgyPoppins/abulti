@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<p class="date"><i class="far fa-clock"></i>{{ post.created_on|date:"F d, Y" }}</p>
+<p>{{ post.content | safe }}</p>
+
+{% endblock %}
