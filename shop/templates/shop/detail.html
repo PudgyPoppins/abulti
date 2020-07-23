@@ -102,6 +102,41 @@
 		{% for s in item.size.all %}<li>{{ s.name }}</li>{% endfor %}
 	</ul>
 	{% endif %}
+
+	<button class="accordion">
+		<h1>Reviews ({{ item.review.count }})</h1>
+		<h1>
+		{% if item.review.count != 0 %}
+		{% with ''|center:item.average_rating as range %}{% for i in range %}<i class="fa fa-star active"></i>{% endfor %}{% endwith %}{% with item.average_rating|minus_stars as x %}{% with ''|center:x as range %}{% for i in range %}<i class="far fa-star"></i>{% endfor %}{% endwith %}{% endwith %}
+
+		{{ item.average_rating|floatformat }}
+		{% endif %}
+		</h1>
+	</button>
+	<div class="panel">
+		{% if item.review.count == 0 %}
+		<p>No reviews yet! Be the first to <a href="{% url 'shop:review' item.get_category_display item.slug %}">write a review</a>.</p>
+		{% else %}
+		<h3><a href="{% url 'shop:review' item.get_category_display item.slug %}">Write a review</a></h3>
+		{% for r in item.review.all %}
+		<div class="review">
+			{% if r.title %}<p class="title">{{ r.title }}</p>{% endif %}
+			<div class="reviewBar">
+				<div>{% with ''|center:r.rating as range %}{% for i in range %}<i class="fa fa-star active"></i>{% endfor %}{% endwith %}{% with r.rating|minus_stars as x %}{% with ''|center:x as range %}{% for i in range %}<i class="far fa-star"></i>{% endfor %}{% endwith %}{% endwith %}</div>
+				<p>{{ r.name }} - {{ r.date|date:"M d, Y" }}</p>
+				{% if r.verified %}<p class="success">Verified Purchased</p>{% endif %}
+			</div>
+			<p class="review">{{ r.review }}</p>
+			{% if request.user.is_authenticated and request.user.is_superuser %}
+				<p><a href="{% url 'shop:delete_review' r.id %}">delete</a> 
+				{% if r.verified %}<a href="{% url 'shop:unverify_review' r.id %}">unverify</a></p>
+				{% else %}<a href="{% url 'shop:verify_review' r.id %}">verify</a></p>
+				{% endif %}
+			{% endif %}
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
 </aside>
 </div>
 

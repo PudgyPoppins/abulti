@@ -60,12 +60,39 @@ class Item(models.Model):
 
 	slug = models.SlugField(max_length=65, blank=True, null=True, unique=True)
 
+	@property
+	def average_rating(self):
+		if self.review.count() > 0:
+			rating = 0
+			for r in self.review.all():
+				rating += r.rating
+			rating /= self.review.count()
+			return rating
+		else:
+			return None
+
 	def __str__(self): 
 		return self.name
 	def save(self, *args, **kwargs):
 		if not self.slug:
 			self.slug = slugify(self.name)
 		super(Item, self).save(*args, **kwargs)
+
+
+class Review(models.Model):
+	title = models.CharField(max_length=50, null=True, blank=True)
+	review = models.TextField(max_length = 500, null=True, blank=True)
+	name = models.CharField(max_length=50, default="")
+	item = models.ForeignKey(Item, related_name='review', on_delete=models.CASCADE,default=1)
+	rating = models.IntegerField(default=5)
+	verified = models.BooleanField(default=False)
+	date = models.DateTimeField(default=timezone.now)
+
+	def __str__(self): 
+		if self.title:
+			return self.title
+		else:
+			return str(self.rating) + " star review for " + self.item.name
 
 class Order(models.Model):
 	token = models.CharField(max_length=5, null=True, blank=True)

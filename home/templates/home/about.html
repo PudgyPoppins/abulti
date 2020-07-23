@@ -1,7 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}About Abulti Apparel{% endblock %}
 
 {% block content %}
 <h1>About</h1>
-<p>About goes here</p>
+<p>Abulti Apparel is an up-and-coming clothing brand featuring ethically sourced, hand-made products. We take inspiration from our store's base in Park City, Utah, to design epic apparel for the world's natural and outdoor enthusists.</p>
+
+<div class="bigImage" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/1280px-The_Great_Wave_off_Kanagawa.jpg')">
+		<img width="100%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/1280px-The_Great_Wave_off_Kanagawa.jpg" alt="placeholder"/>
+</div>
+
+<h1>Our Mission</h1>
+<p>With more and more waste from the clothing industry piling up in landfills each year, Abulti Apparel seeks to provide the world with long-lasting, refurbished products whose timeless designs will never go out of style (and into the dump).</p>
+<p>Abulti Apparel is commited to creating the future of clothing: refurbished apparel with local sourcings and local artist designs.</p>
+
+<img src="{% static 'images/logo.png' %}" class="aboutLogo"/>
 {% endblock %}

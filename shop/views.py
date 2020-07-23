@@ -94,6 +94,7 @@ def cart_detail(request):
 	cart = Cart(request)
 	for item in cart:
 		item['update_quantity_form'] = AddItemForm(initial={'quantity': item['quantity'], 'update': True, 'size': item['size'],})
+	print(cart.cart)
 	return render(request, 'shop/cart_detail.html', {'cart': cart})
 
 def order_create(request):
@@ -193,3 +194,55 @@ def order_created(request, order_token):
 	else:
 		raise Http404 
 	return render(request, 'shop/order_created.html', {'order': order})
+
+def review(request, category, slug):
+	item = get_object_or_404(Item, category=category_reverse[category], slug=slug)
+	form = ReviewForm()
+	if request.method == "POST":
+		form = ReviewForm(request.POST)
+		if form.is_valid():
+			r = form.save(commit=False)
+			r.item = item
+			r.save()
+			messages.success(request, "You've successfully reviewed this item!")
+			return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+		else:
+			messages.error(request, "Please correct the form errors below")
+	return render(request, 'shop/review.html', {'form': form, 'item': item})
+
+def delete_review(request, review_id):
+	review = get_object_or_404(Review, id=review_id)
+	item = review.item
+	if request.user.is_authenticated and request.user.is_superuser:
+		if request.method =="POST":
+			review.delete()
+			messages.success(request, "Review successfully deleted")
+			return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+		return render(request, "shop/delete_review.html", {'r': review}) 
+	else:
+		messages.error(request, "You don't have access to perform this action")
+		return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+
+def verify_review(request, review_id):
+	review = get_object_or_404(Review, id=review_id)
+	item = review.item
+	if request.user.is_authenticated and request.user.is_superuser:
+		review.verified = True
+		review.save()
+		messages.success(request, "Review successfully verified")
+		return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+	else:
+		messages.error(request, "You don't have access to perform this action")
+		return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+
+def unverify_review(request, review_id):
+	review = get_object_or_404(Review, id=review_id)
+	item = review.item
+	if request.user.is_authenticated and request.user.is_superuser:
+		review.verified = False
+		review.save()
+		messages.success(request, "Review successfully verified")
+		return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))
+	else:
+		messages.error(request, "You don't have access to perform this action")
+		return redirect(reverse('shop:detail', kwargs={'category':item.get_category_display(), 'slug': item.slug,}))

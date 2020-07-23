@@ -352,3 +352,53 @@ footer .legal a:hover{
 }
 .post h1{font-size:1.3em; margin:0;}
 .post .date{margin:0;}
+
+.accordion {
+	cursor: pointer;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	position: relative;
+}
+.panel {
+	max-height: 0;
+	overflow: hidden;
+}
+.accordion:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+
+
+	content: "\f078";
+	font-size: 13px;
+	color: #111;
+	position: absolute;
+	margin-top: 5px;
+	right: 10px;
+}
+
+.accordion.active:after {
+	content: "\f077";
+}
+
+.accordion.help{
+	background:transparent;
+	width:100%;
+	border-top:2px solid;
+	padding:1rem 0.75rem;
+	font-size:1.4em;
+}
+.panel.help{
+	padding:0 0.75rem;
+}
+
+.aboutLogo{
+	width:20%;
+	margin:1em 0 1.5em auto;
+	display:block;
+}

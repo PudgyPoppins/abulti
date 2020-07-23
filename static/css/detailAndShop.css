@@ -8,11 +8,12 @@ main{
 }
 aside{
 	min-width:350px;
+	max-width:350px;
 	background:#EEEEF1;
 	padding:1.2em;
 }
 aside h1{margin:0 0 0.5em 0; color:#333;}
-aside h1:first-of-type{font-size:1.7em;}
+aside > h1:first-of-type{font-size:1.7em;}
 aside p, aside li{font-family:"Roboto Mono", monospace; color:#444;}
 aside label{text-transform: lowercase;}
 
@@ -54,6 +55,7 @@ main p{
 
 .search{
 	margin-bottom:10px;
+	width:100%;
 }
 
 /*Cart and Order Form Stuff*/
@@ -182,7 +184,7 @@ main p{
 	font-size:15px;
 	color:#333;
 }
-.fieldSection input, .input{
+.fieldSection input, .input, .fieldSection textarea{
 	width:100%;
 	background:transparent;
 	padding:4px 0 5px 0;
@@ -194,7 +196,8 @@ main p{
 	border-left:1px dotted transparent;
 	border-right:1px dotted transparent;
 }
-.fieldSection input:focus, .StripeElement--focus{
+.fieldSection textarea{border:1px solid #111;}
+.fieldSection input:focus, .StripeElement--focus, .fieldSection textarea:focus{
 	border-color:#56508c;
 	border-top:1px dotted #111;
 	border-left:1px dotted #111;
@@ -218,3 +221,30 @@ select{
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
 }
+
+aside .accordion{
+	background:transparent;
+	width: calc(100% + 2.4em);
+	margin-left: -1.2em;
+	padding:0 1.2em;
+}
+.accordion h1{margin:0; display: inline-block;}
+.accordion h1:last-of-type{float:right; margin-right:10px;}
+
+.stars{
+	margin-top:-0.5em;
+	margin-bottom:0.5em;
+	font-size: 1.5em;
+	text-align: center;
+}
+.formWrapper .fa-star{
+	cursor:pointer;
+}
+.fa-star.active{
+	color:gold;
+}
+
+.review{margin-bottom:10px;}
+.review p{margin:0;}
+.review .title{font-weight: bold;}
+.review .reviewBar{color:#666; margin:5px 0; font-size:0.85em;}

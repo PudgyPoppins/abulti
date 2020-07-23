@@ -11,7 +11,7 @@
 	<div class="formWrapper">
 		<h2>Form</h2>
 		<form method="POST" id="form">
-			{{ form.non_field_errors }}
+			<span class="error">{{ form.non_field_errors }}</span>
 			{% csrf_token %}
 
 			<h3 id="contactInformation">Contact Information</h3>

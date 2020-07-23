@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Review {{ item }}{% endblock %}
+
+{% block content %}
+<div class="formWrapper" style="margin:2em 0;">
+	<h2>Review {{ item }}</h2>
+	<form method="POST" id="form">
+			{{ form.non_field_errors }}
+			{% csrf_token %}
+
+			<h3 style="margin-top:0.5em">Personal Info</h3>
+
+			<div class="fieldSection">
+				{{ form.name.label_tag }}
+				{{ form.name }}
+				<p class="error">{{ form.name.errors }}</p>
+			</div>
+			
+			<h3>Review</h3>
+
+			<div class="stars">
+				<i class="fa fa-star active" id="1" onclick="rate(this)"></i>
+				<i class="fa fa-star active" id="2" onclick="rate(this)"></i>
+				<i class="fa fa-star active" id="3" onclick="rate(this)"></i>
+				<i class="fa fa-star active" id="4" onclick="rate(this)"></i>
+				<i class="fa fa-star active" id="5" onclick="rate(this)"></i>
+			</div>
+			<div class="fieldSection">
+				{{ form.rating }}
+				<p class="error">{{ form.rating.errors }}</p>
+			</div>
+
+			<div class="fieldSection">
+				{{ form.title.label_tag }}
+				{{ form.title }}
+				<p class="error">{{ form.title.errors }}</p>
+			</div>
+
+			<div class="fieldSection">
+				{{ form.review.label_tag }}
+				{{ form.review }}
+				<p class="error">{{ form.review.errors }}</p>
+			</div>
+			
+			<button type="submit" class="buy">Submit Review</button>
+
+		</form>
+</div>
+<script>
+var stars = document.getElementsByClassName('fa-star');
+var input = document.getElementById('id_rating');
+function rate(x){
+	for(var i=0; i < stars.length; i++){
+		stars[i].classList.remove("active", "fa");
+		stars[i].classList.add("far");
+	}
+	input.value = x.id;
+	for(var i=0; i < Number(x.id); i++){
+		stars[i].classList.remove("far");
+		stars[i].classList.add("active", "fa");
+	}
+}
+rate(document.getElementById(input.value));
+</script>
+{% endblock %}

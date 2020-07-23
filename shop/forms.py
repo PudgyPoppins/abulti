@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
-from .models import Order
+from .models import Order, Review
 
 from django_countries import countries
 COUNTRY_CODE_LIST = dict(countries).keys()
@@ -117,3 +117,22 @@ class CheckoutForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		kwargs.setdefault('label_suffix', '')  
 		super(CheckoutForm, self).__init__(*args, **kwargs)
+
+class ReviewForm(forms.ModelForm):
+	class Meta:
+		model = Review
+		fields = ['name', 'title', 'review', 'rating']
+		widgets = {
+				'review': forms.Textarea(), #we want that dummy thicc box for entering an entire review
+				'rating': forms.HiddenInput(),
+			}
+		labels = {
+			"title": "Title (optional)",
+			"review": "Review (optional)",
+			}
+
+	def clean_rating(self):
+		rating = self.cleaned_data['rating']
+		if rating < 1 or rating > 5:
+			raise ValidationError(_('Your rating value must be between 1 and 5'))
+		return rating

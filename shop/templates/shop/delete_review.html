@@ -1,0 +1,5 @@
+<h1>Are you sure you want to delete the review '{{ r }}'?</h1>
+<form method="POST">
+	{% csrf_token %}
+	<input type="Submit" value="Yes">
+</form>

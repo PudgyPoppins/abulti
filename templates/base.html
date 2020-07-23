@@ -18,6 +18,7 @@
 	<meta name="twitter:description" content="Abulti Apparel is a clothing company.">
 
 	<title>{% block title %}Abulti Apparel{% endblock %}</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 
 	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -26,7 +27,6 @@
 	<link type="text/css" href="{% static 'css/mediaQueries.css' %}" rel="stylesheet">
 
 	{% block head %}{% endblock %}
-
 	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -67,8 +67,8 @@
 			<div>
 				<h4>Help</h4>
 				<a href="{% url 'home:help' %}">help</a>
-				<a href="{% url 'home:shipping' %}">shipping info</a>
-				<a href="{% url 'home:returns' %}">returns</a>
+				<a href="{% url 'home:shipping' %}">shipping</a>
+				<a href="{% url 'home:returns' %}">return policy</a>
 			</div>
 		</div>
 
